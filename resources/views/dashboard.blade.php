@@ -11,13 +11,9 @@
             </div>
 
         </h2>
-
-
-        <!-- component -->
-
         {{-- Barra laterale --}}
-        <aside
-            class="bg-gradient-to-br from-gray-800 to-gray-900 -translate-x-80 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
+        {{-- <aside
+            class="bg-gradient-to-br from-gray-800 to-gray-900 fixed top-11 left-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl">
             <div class="relative border-b border-white/20">
                 <a class="flex items-center gap-4 py-6 px-8" href="#/">
                     <h6
@@ -109,12 +105,13 @@
                         </a>
                     </li>
                 </ul>
-                
+
             </div>
-        </aside>
+        </aside> --}}
 
         {{-- Dati Dashboard --}}
-        <div class="mt-12">
+        {{-- <div class="mt-12">
+
             <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
                 <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                     <div
@@ -138,8 +135,7 @@
                             $53k</h4>
                     </div>
                     <div class="border-t border-blue-gray-50 p-4">
-                        <p
-                            class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
+                        <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
                             <strong class="text-green-500">+55%</strong>&nbsp;than last week
                         </p>
                     </div>
@@ -218,10 +214,8 @@
                 </div>
             </div>
 
-        </div>
-
+        </div> --}}
 
     </x-slot>
-
 
 </x-app-layout>

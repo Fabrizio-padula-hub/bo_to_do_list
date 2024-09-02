@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Expenses;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,12 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        //
+        $expenses = Expenses::all();
+        $data = [
+            'expenses' => $expenses
+        ];
+
+        return view('expenses.index', $data);
     }
 
     /**
