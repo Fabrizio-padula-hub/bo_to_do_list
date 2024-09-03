@@ -35,11 +35,17 @@
 
                             <td class="p-4 w-1/4">{{ $list->created_at->format('d/m/Y') }}</td>
 
-                            <td class="p-4 w-1/4">
+                            <td class="p-4 w-1/4 flex justify-between">
                                 <div>
                                     <a class="hover:text-[#4484f3] "
                                         href="{{ route('admin.expenses.show', ['expense' => $list->id]) }}">
                                         <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="hover:text-[#4484f3] "
+                                        href="{{ route('admin.expenses.edit', ['expense' => $list->id]) }}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
                             </td>

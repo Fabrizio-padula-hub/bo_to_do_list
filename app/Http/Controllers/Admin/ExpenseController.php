@@ -43,7 +43,7 @@ class ExpenseController extends Controller
     {
         $formData = $request->all();
         $formData['slug'] = Str::slug($formData['name'], '-');
-       
+
         $newExpense = new Expense;
         $newExpense->fill($formData);
         $newExpense->user_id = Auth::id();
@@ -63,7 +63,7 @@ class ExpenseController extends Controller
         $data = [
             'expense' => $expense
         ];
-       return view('admin.expense.show', $data);
+        return view('admin.expense.show', $data);
     }
 
     /**
@@ -72,9 +72,12 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expense $expense)
     {
-        //
+        $data = [
+            'expense' => $expense
+        ];
+        return view('admin.expense.edit', $data);
     }
 
     /**
