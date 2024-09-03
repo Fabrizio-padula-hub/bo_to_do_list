@@ -49,6 +49,7 @@ class ExpenseController extends Controller
         $newExpense->user_id = Auth::id();
         $newExpense->save();
 
+        return redirect()->route('admin.expenses.show', ['expense' => $newExpense->id]);
     }
 
     /**
