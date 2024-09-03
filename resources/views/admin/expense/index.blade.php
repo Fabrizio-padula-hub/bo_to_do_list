@@ -7,11 +7,12 @@
     <div class="container">
 
         <table class="text-left w-full">
-            <thead class="bg-black flex text-white w-full">
+            <thead class="bg-black flex text-white w-full rounded-lg">
                 <tr class="flex w-full mb-4">
                     <th class="p-4 w-1/4">Nome</th>
                     <th class="p-4 w-1/4">Immagine</th>
                     <th class="p-4 w-1/4">Creata</th>
+                    <th class="p-4 w-1/4">Azioni</th>
                 </tr>
             </thead>
 
@@ -33,6 +34,12 @@
                         @endif
           
                         <td class="p-4 w-1/4">{{ $list->created_at }}</td>
+
+                        <td class="p-4 w-1/4">
+                            <div>
+                                <a href="{{ route('admin.expenses.show', ['expense' => $list->id]) }}">Dettagli</a>
+                            </div>
+                        </td>
 
                     </tr>
                 @endforeach

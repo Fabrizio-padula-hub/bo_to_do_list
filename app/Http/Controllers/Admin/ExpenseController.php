@@ -51,9 +51,12 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Expense $expense)
     {
-        //
+        $data = [
+            'expense' => $expense
+        ];
+       return view('admin.expense.show', $data);
     }
 
     /**
