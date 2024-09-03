@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
@@ -40,7 +42,12 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $formData = $request->all();
-        dd($formData);
+        $formData['slug'] = Str::slug($formData['name'], '-');
+       
+        $newExpense = new Expense;
+        $newExpense->fill($formData);
+        $newExpense->user_id = Auth::id();
+        $newExpense->save();
 
     }
 
