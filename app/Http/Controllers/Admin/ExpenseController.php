@@ -15,13 +15,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expense = Expense::all();
-        // dd($expense);
-        $data = [
-            'expense' => $expense
-        ];
+        // Recupero solo le liste dell'utente autenticato
+        $expenses = Expense::where('user_id', auth()->id())->get();
 
-        return view('admin.expense.index', $data);
+        return view('admin.expense.index', ['expenses' => $expenses]);
     }
 
     /**

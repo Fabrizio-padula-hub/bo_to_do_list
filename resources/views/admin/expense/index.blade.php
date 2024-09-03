@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text mb-6">Prova lista spesa</h1>
-
     <!-- component -->
     <div class="container">
 
@@ -16,8 +14,8 @@
                 </tr>
             </thead>
 
-            <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full">
-                @foreach ($expense as $list)
+            <tbody class="bg-grey-light flex flex-col items-center justify-between w-full">
+                @foreach ($expenses as $list)
                     <tr class="flex w-full mb-4">
                         <td class="p-4 w-1/4">{{ $list->name }}</td>
 
@@ -37,7 +35,10 @@
 
                         <td class="p-4 w-1/4">
                             <div>
-                                <a href="{{ route('admin.expenses.show', ['expense' => $list->id]) }}">Dettagli</a>
+                                <a class="hover:text-[#4484f3] " 
+                                    href="{{ route('admin.expenses.show', ['expense' => $list->id]) }}">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
                             </div>
                         </td>
 
