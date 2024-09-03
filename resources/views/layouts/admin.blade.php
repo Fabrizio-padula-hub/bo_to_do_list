@@ -26,9 +26,9 @@
         <aside
             class="bg-gradient-to-br from-gray-800 to-gray-900 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
             <div class="relative border-b border-white/20">
-                <a class="flex items-center gap-4 py-6 px-8" href="#/">
+                <a class="flex items-center gap-4 py-6 px-8" href="{{ route('admin.dashboard') }}">
                     <h6
-                        class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
+                        class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white hover:scale-125 transition delay-150 duration-300 ease-in-out">
                         Dashboard</h6>
                 </a>
                 <button
@@ -45,12 +45,12 @@
             <div class="m-4">
                 <ul class="mb-4 flex flex-col gap-1">
                     <li>
-                        <a aria-current="page" class="active" href="#">
+                        <a aria-current="page" class="active" href="{{ route('admin.expenses.index') }}">
                             <button
                                 class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] w-full flex items-center gap-4 px-4 capitalize"
                                 type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    aria-hidden="true" class="w-5 h-5 text-inherit">
+                                    aria-hidden="true" class="w-5 h-5 text-inherit ">
                                     <path
                                         d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z">
                                     </path>
@@ -60,7 +60,7 @@
                                 </svg>
                                 <p
                                     class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
-                                    dashboard</p>
+                                    Liste</p>
                             </button>
                         </a>
                     </li>
