@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');  
             $table->string('name');
-            $table->text('image')->nullable();
+            $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
