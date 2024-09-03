@@ -53,24 +53,30 @@
             {{-- altrimenti mi stampi il mssaggio --}}
         @else
             <!-- component -->
+
             <div class="relative flex min-h-screen flex-col justify-center overflow-hidden">
                 <div class="absolute inset-0 bg-center"></div>
-                <div class="group relative m-0 flex h-72 w-96 rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg">
+                <div
+                    class="group relative m-0 flex h-72 w-96 rounded-xl shadow-xl ring-gray-900/5 sm:mx-auto sm:max-w-lg hover:scale-100">
                     <div
                         class="z-10 h-full w-full overflow-hidden rounded-xl border opacity-80 transition duration-300 ease-in-out group-hover:opacity-100 dark:border-gray-700 dark:opacity-70">
                         <img src="https://images.unsplash.com/photo-1506187334569-7596f62cf93f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3149&q=80"
                             class="animate-fade-in block h-full w-full scale-100 transform object-cover object-center opacity-100 transition duration-300 group-hover:scale-110"
                             alt="" />
                     </div>
-                    <div class="absolute inset-0 flex items-center justify-center z-20"> 
-                        <div class="text-center"> 
-                            <h1 class="text-xl font-bold text-white shadow-xl">Non ci sono elementi nella tua lista.</h1>
-                            <h2 class="text-sm font-light text-gray-100 shadow-xl"></h2>
-                            <div class="bg-slate-200 rounded-lg min-h-11 flex justify-center items-center">
-                                Inizia ad aggiungere
+                    <a href="{{ route('admin.expenses.create') }}">
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <div class="text-center">
+                                <h1 class="text-xl font-bold text-white shadow-xl">Non ci sono elementi nella tua lista.
+                                </h1>
+                                <h2 class="text-sm font-light text-gray-100 shadow-xl"></h2>
+                                <div
+                                    class="bg-slate-200 rounded-lg min-h-11 flex justify-center items-center hover:bg-[#4988f5] hover:text-w ease-in duration-300">
+                                    Inizia ad aggiungere
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         @endif

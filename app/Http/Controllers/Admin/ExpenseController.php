@@ -28,7 +28,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.expense.create');
     }
 
     /**
@@ -39,7 +39,9 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+        dd($formData);
+
     }
 
     /**

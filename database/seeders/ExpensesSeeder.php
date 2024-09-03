@@ -18,7 +18,7 @@ class ExpensesSeeder extends Seeder
     public function run(Faker $faker)
     {
         
-        $user = User::first(); 
+        $user = User::all(); 
 
         //  Validazione utente
         if ($user) {
