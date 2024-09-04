@@ -1,28 +1,37 @@
 @extends('layouts.admin')
 
 @section('content')
+    {{-- messaggio flash --}}
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- component -->
     <div class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
-        @if ($expense->image)
-            <div
-                class="relative mx-4 mt-4 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                <img class="w-full" src="{{ $expense->image }}"
-                    alt="ui/ux review check" />
-            </div>
-        @else
-            <div>
+
+        <div>
+            @if ($expense->image)
+                <!-- Mostra l'immagine dal database -->
+                <div
+                    class="relative mx-4 mt-4 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+                    <img class="w-full" src="{{ asset('storage/' . $expense->image) }}" alt="{{ $expense->name }}">
+                </div>
+            @else
+                <!-- Mostra il testo -->
                 <strong>Nessuna Immagine</strong>
-            </div>
-        @endif
-        
+            @endif
+        </div>
+
         <div class="p-6">
             <div class="mb-3 flex items-center justify-between">
                 <h5 class="block font-sans text-xl font-medium leading-snug tracking-normal text-blue-gray-900 antialiased">
-                   <strong>Elemento:</strong> {{ $expense->name }}
+                    <strong>Elemento:</strong> {{ $expense->name }}
                 </h5>
             </div>
-           
-            
+
+
         </div>
         {{-- <div class="p-6 pt-3">
             <button

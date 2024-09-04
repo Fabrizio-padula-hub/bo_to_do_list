@@ -8,6 +8,7 @@ use App\Models\Expense;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ExpenseController extends Controller
 {
@@ -57,12 +58,21 @@ class ExpenseController extends Controller
         );
 
         $formData = $request->all();
+
+        if($request->hasFile('image')){
+            $img_path = Storage::disk('public')->put('expense_images', $formData['image']);
+            $formData['image'] = $img_path;
+        } 
+
         $formData['slug'] = Str::slug($formData['name'], '-');
 
         $newExpense = new Expense;
         $newExpense->fill($formData);
         $newExpense->user_id = Auth::id();
         $newExpense->save();
+
+        // messaggio flash
+        session()->flash('success', 'Progetto creato con successo!');
 
         return redirect()->route('admin.expenses.show', ['expense' => $newExpense->id]);
     }

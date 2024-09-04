@@ -7,7 +7,7 @@
     <body class="bg-gray-100">
         <div class="container mx-auto py-8">
             <h1 class="text-2xl font-bold mb-6 text-center">Crea la tua lista</h1>
-            
+
             {{-- Messaggio errore validazione --}}
             @if ($errors->any())
                 <div class="bg-red-400">
@@ -20,7 +20,7 @@
             @endif
 
             {{-- corpo del form --}}
-            <form action="{{ route('admin.expenses.store') }}" method="POST"
+            <form action="{{ route('admin.expenses.store') }}" method="POST" enctype="multipart/form-data"
                 class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
                 @csrf
 
@@ -33,6 +33,25 @@
                 </div>
 
                 {{-- image --}}
+
+                <!-- component -->
+                <main class="flex mb-5 items-center justify-center bg-gray-100 font-sans">
+                    <label for="image"
+                        class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+
+                        <h3 class="mt-4 text-xl font-medium text-gray-700 tracking-wide">Carica File</h3>
+
+                        <p class="mt-2 text-gray-500 tracking-wide">Carica file SVG, PNG, JPG or GIF.
+                        </p>
+
+                        <input id="image" type="file" class="" name="image" />
+                        </section>
+                </main>
 
 
 
