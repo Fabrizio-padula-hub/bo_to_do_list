@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Expense;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ExpenseController extends Controller
 {
@@ -41,6 +42,20 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'name' => 'required|min:3|max:50|unique:expenses,name',
+                'image' => 'nullable|image|max:512'
+            ],
+            [
+                'name.required' => 'il nome è obbligatorio',
+                'name.min' => 'Minino 5 caratteri',
+                'name.max' => 'Massimo 200 caratteri',
+                'name.unique' => 'Nome già esistente',
+                'image.image' => 'Il file deve essere un\'immagine (jpg, jpeg, png, bmp, gif, svg o webp).'
+            ]
+        );
+
         $formData = $request->all();
         $formData['slug'] = Str::slug($formData['name'], '-');
 
@@ -89,10 +104,29 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
+        $validated = $request->validate(
+            [
+                'name' => [
+                    'required',
+                    'min:3',
+                    'max:50',
+                    Rule::unique('expenses')->ignore($expense->id),
+                ],
+                'image' => 'nullable|image|max:512'
+            ],
+            [
+                'name.required' => 'il nome è obbligatorio',
+                'name.min' => 'Minino 5 caratteri',
+                'name.max' => 'Massimo 200 caratteri',
+                'name.unique' => 'Nome già esistente',
+                'image.image' => 'Il file deve essere un\'immagine (jpg, jpeg, png, bmp, gif, svg o webp).'
+            ]
+        );
+
         $formData = $request->all();
         $formData['slug'] = Str::slug($formData['name'], '-');
         $expense->update($formData);
-        
+
         return redirect()->route('admin.expenses.show', ['expense' => $expense->id]);
     }
 

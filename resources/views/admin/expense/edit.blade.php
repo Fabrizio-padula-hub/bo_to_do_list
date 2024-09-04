@@ -9,6 +9,18 @@
             <h1 class="text-2xl font-bold mb-6 text-center">
                 Modifica l'elemento: {{ $expense->name }}
             </h1>
+            
+            {{-- Messaggio errore validazione --}}
+            @if ($errors->any())
+                <div class="bg-red-400">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
             <form action="{{ route('admin.expenses.update', ['expense'=> $expense->id]) }}" method="POST"
             class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
             @csrf
