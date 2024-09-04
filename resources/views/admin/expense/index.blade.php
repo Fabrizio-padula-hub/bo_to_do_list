@@ -48,6 +48,14 @@
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
+                                <form action="{{ route('admin.expenses.destroy', ['expense' => $list->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="hover:text-[#4484f3] "
+                                        href="{{ route('admin.expenses.edit', ['expense' => $list->id]) }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
                             </td>
 
                         </tr>

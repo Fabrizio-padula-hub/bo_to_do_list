@@ -87,9 +87,13 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expense $expense)
     {
-        //
+        $formData = $request->all();
+        $formData['slug'] = Str::slug($formData['name'], '-');
+        $expense->update($formData);
+        
+        return redirect()->route('admin.expenses.show', ['expense' => $expense->id]);
     }
 
     /**
@@ -98,8 +102,10 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+
+        return redirect()->route('admin.expenses.index');
     }
 }
