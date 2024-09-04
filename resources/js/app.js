@@ -12,7 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
     allDeleteButtons.forEach((deleteButton) => {
         deleteButton.addEventListener('click', function (event) {
             event.preventDefault();
+
             const deleteModal = document.getElementById('confirmDeleteModal');
+            const itemName = this.getAttribute('data-item-name'); // Ottieni il nome dell'elemento dal data attribute
+            const itemToDeleteSpan = document.getElementById('itemToDelete');
+
+            // Aggiorna il contenuto della modale con il nome dell'elemento
+            itemToDeleteSpan.textContent = itemName;
+
             deleteModal.classList.remove('hidden');
             deleteModal.classList.add('flex');
 
