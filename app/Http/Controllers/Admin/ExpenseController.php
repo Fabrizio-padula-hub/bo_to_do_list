@@ -134,6 +134,18 @@ class ExpenseController extends Controller
         );
 
         $formData = $request->all();
+
+        if($request->hasFile('image')){
+            // se era presente un immagine la cancella
+            if($expense->image){
+                Storage::delete($expense->image);
+            }
+
+            $img_path = Storage::disk('public')->put('project_images', $formData['image']);
+            
+            $formData['image'] = $img_path;
+        };
+
         $formData['slug'] = Str::slug($formData['name'], '-');
         $expense->update($formData);
 
