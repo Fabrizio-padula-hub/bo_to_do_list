@@ -46,6 +46,20 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
 
+    <!-- component -->
+    <a href="{{ route('admin.expenses.edit', ['expense' => $expense->id]) }}">
+        <button
+            class="middle mt-4 none center rounded-lg bg-pink-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            data-ripple-light="true">
+            Modifica
+        </button>
+    </a>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
+
+    <!-- Ripple Effect from cdn -->
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
     <!-- from cdn -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
 @endsection
