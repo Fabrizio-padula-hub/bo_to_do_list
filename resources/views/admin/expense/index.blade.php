@@ -122,7 +122,8 @@
                         </h3>
                         <div class="mt-2">
                             <!-- Messaggio aggiornato per includere il nome dell'elemento -->
-                            <p class="text-sm text-gray-500">Sei sicuro di voler eliminare <strong class="text-red-500" id="itemToDelete"></strong>?
+                            <p class="text-sm text-gray-500">Sei sicuro di voler eliminare <strong class="text-red-500"
+                                    id="itemToDelete"></strong>?
                                 Questa azione non può essere annullata.</p>
                         </div>
                     </div>
@@ -136,6 +137,49 @@
             </div>
         </div>
     </div>
+
+    <!-- Paginazione -->
+    <nav>
+        <ul class="flex">
+            <li>
+                <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+                    href="#" aria-label="Previous">
+                    <span class="material-icons text-sm">keyboard_arrow_left</span>
+                </a>
+            </li>
+            <li>
+                <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-500/20 transition duration-150 ease-in-out"
+                    href="#">
+                    1
+                </a>
+            </li>
+            <li>
+                <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+                    href="#">
+                    2
+                </a>
+            </li>
+            <li>
+                <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+                    href="#">
+                    3
+                </a>
+            </li>
+            <li>
+                <a class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+                    href="#" aria-label="Next">
+                    <span class="material-icons text-sm">keyboard_arrow_right</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
+    <!-- Material Icons Link -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
 
 
 @endsection

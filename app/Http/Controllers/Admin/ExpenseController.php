@@ -22,7 +22,9 @@ class ExpenseController extends Controller
         // Recupero solo le liste dell'utente autenticato
         $expenses = Expense::where('user_id', auth()->id())->get();
 
-        return view('admin.expense.index', ['expenses' => $expenses]);
+        return view('admin.expense.index', [
+            'expenses' => Expense::paginate(8)
+        ]);
     }
 
     /**
@@ -136,7 +138,7 @@ class ExpenseController extends Controller
         $formData = $request->all();
 
         if($request->hasFile('image')){
-            // se era presente un immagine la cancella
+            // se era presente un immagine la cancella 
             if($expense->image){
                 Storage::delete($expense->image);
             }
