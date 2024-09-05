@@ -22,16 +22,12 @@ class ExpenseController extends Controller
     {
         // $expenses = Expense::where('user_id', auth()->id())->get();
 
-        // Recupera tutte le categorie per la selezione
-        $categories = CategoryTag::all();
-
         // Recupero solo le liste dell'utente autenticato
         $expenses = Expense::where('user_id', auth()->id())->paginate(10);
 
         // return $prova;
         return view('admin.expense.index', [
             'expenses' => $expenses,
-            'categories' => $categories,
         ]);
     }
 
