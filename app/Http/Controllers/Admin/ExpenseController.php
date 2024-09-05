@@ -20,10 +20,14 @@ class ExpenseController extends Controller
     public function index()
     {
         // Recupero solo le liste dell'utente autenticato
-        $expenses = Expense::where('user_id', auth()->id())->get();
+        // $expenses = Expense::where('user_id', auth()->id())->get();
 
+        $expenses = Expense::where('user_id', auth()->id())->paginate(10);
+
+        // return $prova;
         return view('admin.expense.index', [
-            'expenses' => Expense::paginate(8)
+            'expenses' => $expenses
+            
         ]);
     }
 
