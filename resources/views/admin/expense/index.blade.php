@@ -12,6 +12,7 @@
                         <th class="p-4 w-1/4">Nome</th>
                         <th class="p-4 w-1/4">Immagine</th>
                         <th class="p-4 w-1/4">Creata (G/M/A)</th>
+                        <th class="p-4 w-1/4">Categorie</th>
                         <th class="p-4 w-1/4">Azioni</th>
                     </tr>
                 </thead>
@@ -21,19 +22,34 @@
                         <tr class="flex w-full mb-4 shadow-inner rounded-lg">
                             <td class="p-4 w-1/4">{{ $list->name }}</td>
 
-                            {{-- se l'immagine è presente mi stampi --}}
-                            @if ($list->image)
-                                <td class="p-4 w-1/4">
-                                    <i class="fa-solid fa-image"></i>
-                                </td>
-                            @else
-                                {{-- altrimenti --}}
-                                <td class="p-4 w-1/4">
-                                    <i class="fa-solid fa-ban"></i>
-                                </td>
-                            @endif
+                                {{-- se l'immagine è presente mi stampi --}}
+                                @if ($list->image)
+                                    <td class="p-4 w-1/4">
+                                        <i class="fa-solid fa-image"></i>
+                                    </td>
+                                @else
+                                    {{-- altrimenti --}}
+                                    <td class="p-4 w-1/4">
+                                        <i class="fa-solid fa-ban"></i>
+                                    </td>
+                                @endif
 
                             <td class="p-4 w-1/4">{{ $list->created_at->format('d/m/Y') }}</td>
+
+                            <!-- Selezione categorie -->
+                            <td class="p-4 w-1/4">
+                                @if ($list->categoryTags->isNotEmpty())
+                                    @foreach ($list->categoryTags as $category)
+                                        <span
+                                            class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                            {{ $category->name }}
+                                        </span>
+                                    @endforeach
+                                @else
+                                    <i class="fa-solid fa-xmark"></i>
+                                @endif
+                            </td>
+
 
                             <td class="p-4 w-1/4 flex justify-between">
                                 {{-- bottone show --}}
@@ -70,7 +86,7 @@
 
             <!-- Paginazione -->
             <div class="min-h-40">
-                {{ $expenses ->links() }}
+                {{ $expenses->links() }}
             </div>
 
             {{-- altrimenti mi stampi il mssaggio --}}
@@ -143,7 +159,7 @@
         </div>
     </div>
 
-    
+
 
 
     <!-- stylesheet -->

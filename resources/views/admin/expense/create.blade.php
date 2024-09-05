@@ -33,8 +33,6 @@
                 </div>
 
                 {{-- image --}}
-
-                <!-- component -->
                 <main class="flex mb-5 items-center justify-center bg-gray-100 font-sans">
                     <label for="image"
                         class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
@@ -53,6 +51,19 @@
                         </section>
                 </main>
 
+                <!-- Checkbox per le categorie -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Categorie</label>
+                    <div class="flex flex-wrap gap-4">
+                        @foreach ($categories as $category)
+                            <label class="inline-flex items-center space-x-2">
+                                <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                    class="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
+                                <span class="text-gray-700">{{ $category->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                </div>
 
 
                 <button

@@ -31,10 +31,25 @@
                 </h5>
             </div>
 
+            <!-- visualizzza le categorie associate -->
+            <div class="mt-4">
+                <h6 class="block font-sans text-lg font-medium leading-snug tracking-normal text-blue-gray-900 antialiased">
+                    <strong>Categorie associate:</strong>
+                </h6>
+                @if ($categories->isEmpty())
+                    <p class="text-gray-500">Nessuna categoria associata.</p>
+                @else
+                    <ul class="list-disc pl-5">
+                        @foreach ($categories as $category)
+                            <li class="text-gray-700">{{ $category->name }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
 
         </div>
         <div class="p-6 pt-3 flex">
-             <!-- Bottone Modifica -->
+            <!-- Bottone Modifica -->
             <a href="{{ route('admin.expenses.edit', ['expense' => $expense->id]) }}">
                 <button
                     class="mr-3 middle mt-4 none center rounded-lg bg-pink-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -42,14 +57,14 @@
                     Modifica
                 </button>
             </a>
-             <!-- Bottone Elimina -->
-            
+            <!-- Bottone Elimina -->
+
         </div>
     </div>
 
 
 
-   
+
 
 
 

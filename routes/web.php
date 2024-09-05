@@ -21,12 +21,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])
-->name('admin.')
-->prefix('admin')
-->group(function (){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/expenses', ExpenseController::class);
-});
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('/expenses', ExpenseController::class);
+        Route::put('/expenses/{expense}/update-categories', [ExpenseController::class, 'updateCategories'])->name('expenses.updateCategories');
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,4 +35,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

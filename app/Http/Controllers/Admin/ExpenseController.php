@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use App\Models\CategoryTag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -19,15 +20,18 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        // Recupero solo le liste dell'utente autenticato
         // $expenses = Expense::where('user_id', auth()->id())->get();
 
+        // Recupera tutte le categorie per la selezione
+        $categories = CategoryTag::all();
+
+        // Recupero solo le liste dell'utente autenticato
         $expenses = Expense::where('user_id', auth()->id())->paginate(10);
 
         // return $prova;
         return view('admin.expense.index', [
-            'expenses' => $expenses
-            
+            'expenses' => $expenses,
+            'categories' => $categories,
         ]);
     }
 
@@ -38,7 +42,10 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('admin.expense.create');
+        // Recupera tutte le categorie per la selezione
+        $categories = CategoryTag::all();
+
+        return view('admin.expense.create', compact('categories'));
     }
 
     /**
@@ -65,10 +72,10 @@ class ExpenseController extends Controller
 
         $formData = $request->all();
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $img_path = Storage::disk('public')->put('expense_images', $formData['image']);
             $formData['image'] = $img_path;
-        } 
+        }
 
         $formData['slug'] = Str::slug($formData['name'], '-');
 
@@ -76,6 +83,10 @@ class ExpenseController extends Controller
         $newExpense->fill($formData);
         $newExpense->user_id = Auth::id();
         $newExpense->save();
+
+        if ($request->has('categories')) {
+            $newExpense->categoryTags()->attach($request->categories);
+        }
 
         // messaggio flash
         session()->flash('success', 'Progetto creato con successo!');
@@ -91,9 +102,13 @@ class ExpenseController extends Controller
      */
     public function show(Expense $expense)
     {
+        $expense->load('categoryTags');
+
         $data = [
-            'expense' => $expense
+            'expense' => $expense,
+            'categories' => $expense->categoryTags
         ];
+
         return view('admin.expense.show', $data);
     }
 
@@ -141,14 +156,14 @@ class ExpenseController extends Controller
 
         $formData = $request->all();
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             // se era presente un immagine la cancella 
-            if($expense->image){
+            if ($expense->image) {
                 Storage::delete($expense->image);
             }
 
             $img_path = Storage::disk('public')->put('project_images', $formData['image']);
-            
+
             $formData['image'] = $img_path;
         };
 

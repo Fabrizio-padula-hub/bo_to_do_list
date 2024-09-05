@@ -34,9 +34,8 @@
                         type="text" id="name" name="name" value="{{ $expense->name }}">
                 </div>
 
+                
                 {{-- image --}}
-
-                <!-- component -->
                 <main class="flex mb-5 items-center justify-center bg-gray-100 font-sans">
                     <label for="image"
                         class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">

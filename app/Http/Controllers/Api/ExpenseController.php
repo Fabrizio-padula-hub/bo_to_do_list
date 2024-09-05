@@ -11,7 +11,7 @@ class ExpenseController extends Controller
     public function index(){
         
         $success = false;
-        $data = Expense::all();
+        $data = Expense::with('categoryTags')->get();;
         if(!empty($data)){
             $success = true;
         }
