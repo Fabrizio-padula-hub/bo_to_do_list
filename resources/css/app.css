@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* CSS per la paginazione in index.blade.php */
 .min-h-40 > .flex > .hidden {
     min-height: 30px;
     display: flex;
