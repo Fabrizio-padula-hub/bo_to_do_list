@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use Jenssegers\Agent\Agent;;
+
 
 class ExpenseController extends Controller
 {
@@ -20,10 +22,19 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        // $expenses = Expense::where('user_id', auth()->id())->get();
+        $agent = new Agent();
+
+        // Determina il numero di elementi per pagina in base al tipo di dispositivo
+        if ($agent->isMobile()) {
+            $forPage = config('pagination.for_page.mobile');
+        } elseif ($agent->isTablet()) {
+            $forPage = config('pagination.for_page.tablet');
+        } else {
+            $forPage = config('pagination.for_page.desktop');
+        }
 
         // Recupero solo le liste dell'utente autenticato
-        $expenses = Expense::where('user_id', auth()->id())->paginate(10);
+        $expenses = Expense::where('user_id', auth()->id())->paginate($forPage);
 
         // return $prova;
         return view('admin.expense.index', [
